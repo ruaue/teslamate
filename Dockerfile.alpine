@@ -46,15 +46,13 @@ ENV LANG=C.UTF-8 \
 WORKDIR $HOME
 
 RUN apk update
- && apk add --no-cache libodbc1 \
-        libsctp1  \
-        libssl3  \
+ && apk add --no-cache unixodbc \
+        liblksctp  \
+        openssl-dev  \
         libstdc++6 \
         netcat-openbsd \
-        tini  \
+        tini \
         tzdata && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
     addgroup --gid 10001 --system nonroot && \
     adduser  --uid 10000 --system --ingroup nonroot --home /home/nonroot nonroot && \
     chown -R nonroot:nonroot .
